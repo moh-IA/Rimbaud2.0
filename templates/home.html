@@ -1,0 +1,59 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas</title>
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+</head>
+
+<body>
+    <br><br>
+    <div class="container">
+        <form class="d-flex" method=POST action="{% url 'search-articles'  %}">
+            {% csrf_token %}
+            <input class=" form-control me-2" type="search" name="search" aria-label="Search"
+                placeholder="Search Article">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <br><br>
+        <table class="table table-bordered border border-dark">
+            <thead class="table-dark">
+                <tr>
+                    <th>Area</th>
+                    <th>Article</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for area in areas %}
+
+                <tr>
+                    <td>{{area.name}}</td>
+                    <td>
+                        {% for article in articles%}
+                        {% if area.id == article.area_id and not article.viewable_admin %}
+                        <div><a href="{% url 'article' article.pk   %}">{{article.id}}. {{article.title}}</a>
+                            <small class="text-muted d-block">{{article.description}} <br>
+                                {{article.publication_date}}</small>
+                        </div>
+                        {% elif area.id == article.area_id and article.viewable_admin %}
+                        <div><a href="{% url 'admin:article_article_change' article.id %}">{{article.id}}. {{article.title}}</a>
+                            <small class="text-muted d-block">{{article.description}} <br>
+                                {{article.publication_date}}</small>
+                        {% endif %}
+                     
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

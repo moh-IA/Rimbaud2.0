@@ -1,0 +1,57 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas</title>
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+</head>
+
+<body>
+    <br><br>
+    <div class="container">
+        <!-- <form class="d-flex" method=POST action="{% url 'search-articles'  %}">
+            {% csrf_token %}
+            <input class=" form-control me-2" type="search" aria-label="Search" placeholder="Article id">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+        {% if search %}
+        <h1>You Searched For : {{search}}</h1>
+        <br>
+            
+        <table class="table table-bordered border border-dark">
+            <thead class="table-dark">
+                <tr>
+                    <th>Area</th>
+                    <th>Article</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles%}
+                <tr>
+                   
+                    {% if article.publication_date|date:'d-m-Y' < to_day|date:'d-m-Y' %}
+                    <td>{{article.area.name}}</td>
+                    <td>
+                        <div><a href="{% url 'article' article.id   %}">{{article.id}}. {{article.title}}</a>
+                            <small class="text-muted d-block">{{article.description}} <br>{{ article.publication_date|date:'d-m-Y' }} </small>
+                        </div>
+                    </td>
+                    {% else %}
+                    <h2>this article will be published on :{{ article.publication_date|date:'d-m-Y' }}</h2>
+                    {% endif%}
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+
+        {% else %}
+        <h1>You should put an article Id or Title for Search</h1>
+        {% endif %} <br><br>
+    </div>
+</body>
+
+</html>

@@ -11,9 +11,11 @@
 </head>
 
 <body>
+    <H1>WEB APP</H1>
     <br><br>
     <div class="container">
         <form class="d-flex" method=POST action="{% url 'search-articles'  %}">
+        
             {% csrf_token %}
             <input class=" form-control me-2" type="search" name="search" aria-label="Search"
                 placeholder="Search Article">

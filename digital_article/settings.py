@@ -136,6 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = 'M:/cdn'
+# STATIC_ROOT = 'M:/cdn'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
     ]

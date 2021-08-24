@@ -146,8 +146,8 @@ AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
 
 AZURE_CONTAINER = os.getenv('AZ_STORAGE_CONTAINER')
 
-STATIC_LOCATION = 'static'
-STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/{STATIC_LOCATION}/'
+STATIC_LOCATION = 'staticfiles'
+STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 DEFAULT_FILE_STORAGE = 'digital_article.custom_azure.AzureMediaStorage'

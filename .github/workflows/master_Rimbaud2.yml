@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'Rimbaud2'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_d7f1400670c94797b25fbd12edfb2847 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_10168d275ab144929b56a1c767c7670e }}

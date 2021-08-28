@@ -49,5 +49,8 @@ def search_article (request):
 
         else:
             return render(request, 'search_articles.html', {'search':search})
-      
+def dashbord (request):
+    
+    return render (request,'dashbord.html')
+    
 
